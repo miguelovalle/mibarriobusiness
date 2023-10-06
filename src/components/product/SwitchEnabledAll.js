@@ -9,11 +9,7 @@ export const SwitchEnabledAll = ({ id, enabl, setListFiltered }) => {
   const { mutate } = useMutateEnabledAll();
 
   return (
-<<<<<<< HEAD
     <Container>
-=======
-    <Container justifyContent={"center"}>
->>>>>>> incluye listas de agregados
       <FormControl display="flex" alignItems="center">
         <FormLabel htmlFor="enabledProducts" mb="0">
           Todos Disponibles si/no

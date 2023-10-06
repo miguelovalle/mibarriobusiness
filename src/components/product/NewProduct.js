@@ -1,9 +1,5 @@
 import React from "react";
-<<<<<<< HEAD
-import { Box, Container, Heading, SimpleGrid, VStack } from "@chakra-ui/react";
-=======
 import { Container } from "@chakra-ui/react";
->>>>>>> incluye listas de agregados
 import { useQueryClient } from "react-query";
 import { Navigate } from "react-router-dom";
 import { FeaturesProduct } from "./FeaturesProduct";

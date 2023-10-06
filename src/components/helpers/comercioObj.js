@@ -22,12 +22,9 @@ export const comercioObj = () => {
   const puerta = sessionStorage.getItem("puerta");
   const detalles = sessionStorage.getItem("detalles");
   const imgName = sessionStorage.getItem("imgName");
-<<<<<<< HEAD
-=======
   const daysno = sessionStorage.getItem("daysno");
   const hInicio = sessionStorage.getItem("hInicio");
   const hFinal = sessionStorage.getItem("hFinal");
->>>>>>> incluye listas de agregados
 
   const commerce = {
     tipo,
@@ -41,21 +38,14 @@ export const comercioObj = () => {
     passwd,
     lat,
     long,
-<<<<<<< HEAD
     location: { type: "point", coordinates: [long, lat] },
-=======
-    location: { type: "Point", coordinates: [long, lat] },
->>>>>>> incluye listas de agregados
     address,
     cross,
     addrritems: { principal, cruceA, cruceB, puerta, detalles },
     imgName,
-<<<<<<< HEAD
-=======
     daysno,
     hInicio,
     hFinal,
->>>>>>> incluye listas de agregados
   };
 
   return commerce;

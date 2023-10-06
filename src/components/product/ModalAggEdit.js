@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
-=======
-import { useEffect } from 'react';
->>>>>>> incluye listas de agregados
 import {
   Button,
   FormControl,
@@ -19,17 +15,9 @@ import {
   Container,
   Flex,
   useToast,
-<<<<<<< HEAD
 } from "@chakra-ui/react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { MdPostAdd, MdDeleteSweep } from "react-icons/md";
-=======
-} from '@chakra-ui/react';
-
-import { useForm, useFieldArray } from 'react-hook-form';
-
-import { AiFillFileAdd, AiFillDelete } from 'react-icons/ai';
->>>>>>> incluye listas de agregados
 
 let list = [];
 let items = [];
@@ -37,10 +25,7 @@ let items = [];
 export const ModalAggEdit = ({
   isOpen,
   setisOpen,
-<<<<<<< HEAD
-=======
   setisOpenAgg,
->>>>>>> incluye listas de agregados
   aggregates,
   listEdit,
   indexList,
@@ -49,11 +34,8 @@ export const ModalAggEdit = ({
 }) => {
   const toast = useToast();
 
-<<<<<<< HEAD
   const [showControl, setshowControl] = useState(false);
 
-=======
->>>>>>> incluye listas de agregados
   const {
     handleSubmit,
     register,
@@ -64,35 +46,11 @@ export const ModalAggEdit = ({
 
   const { fields, append, remove } = useFieldArray({
     control,
-<<<<<<< HEAD
     name: "items",
-=======
-    name: 'items',
->>>>>>> incluye listas de agregados
   });
 
   useEffect(() => {
     remove();
-<<<<<<< HEAD
-    setValue("title", listEdit?.[0].title);
-    setValue("req", listEdit?.[1].req);
-    const lista = listEdit?.[2].forEach((element) => {
-      append({ item: element?.item, price: element?.price });
-    });
-  }, [listEdit, setValue]);
-
-  const onSubmit = (e) => {
-    toast({
-      description:
-        "Presione el botón Registrar en la Fiha de producto, para conservar los cambios",
-      status: "warning",
-      duration: 7000,
-      isClosable: true,
-    });
-
-    const cadOblig = e.req ? "obligatorio" : "";
-
-=======
     setValue('title', listEdit?.[0].title);
     setValue('req', listEdit?.[1].req);
     setValue('minItemsNum', listEdit?.[2].minItemsNum);
@@ -105,7 +63,6 @@ export const ModalAggEdit = ({
   const onSubmit = e => {
     list = [];
     const cadOblig = e.req ? 'obligatorio' : '';
->>>>>>> incluye listas de agregados
     list.push(
       {
         title: e.title,
@@ -116,36 +73,6 @@ export const ModalAggEdit = ({
       e.items
     );
 
-<<<<<<< HEAD
-    if (btnValue === "edit") {
-      if (aggregates.length > 0) {
-        aggregates.splice(indexList, 1, list);
-      } else {
-        aggregates.push(list);
-      }
-    }
-
-    if (btnValue === "add") {
-      aggregates.push(list);
-    }
-
-    setaggList(aggregates);
-    setValue("title", "");
-    setValue("item", "");
-    setValue("req", false);
-    setValue("list", "");
-    remove();
-    setshowControl(true);
-  };
-
-  const onClose = () => {
-    setisOpen(false);
-  };
-
-  return (
-    <Container>
-      <Modal isOpen={isOpen} onClose={onClose}>
-=======
     if (btnValue === 'edit') {
       if (aggregates.length > 0) {
         aggregates.splice(indexList, 1, list);
@@ -186,18 +113,13 @@ export const ModalAggEdit = ({
   return (
     <Container>
       <Modal isOpen={isOpen} onClose={setisOpen}>
->>>>>>> incluye listas de agregados
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Corrección de Listas</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <form onSubmit={handleSubmit(onSubmit)}>
-<<<<<<< HEAD
               <FormControl isDisabled={showControl} isInvalid={errors.title}>
-=======
-              <FormControl isInvalid={errors.title}>
->>>>>>> incluye listas de agregados
                 <FormLabel w={340} htmlFor="title" mt={3}>
                   Nombre de la Lista
                 </FormLabel>
@@ -206,13 +128,8 @@ export const ModalAggEdit = ({
                   w={340}
                   placeholder="Ej: Escoge la Ensalada"
                   borderColor="gray.400"
-<<<<<<< HEAD
                   {...register("title", {
                     required: "Campo Obligatorio",
-=======
-                  {...register('title', {
-                    required: 'Campo Obligatorio',
->>>>>>> incluye listas de agregados
                   })}
                 />
                 <FormErrorMessage>
@@ -220,9 +137,6 @@ export const ModalAggEdit = ({
                 </FormErrorMessage>
               </FormControl>
 
-<<<<<<< HEAD
-              <FormControl isDisabled={showControl} mt={3}>
-=======
               <FormControl isInvalid={errors.subtitle}>
                 <FormLabel w={340} htmlFor="subtitle" mt={3}>
                   descripcion de límites
@@ -240,17 +154,10 @@ export const ModalAggEdit = ({
               </FormControl>
 
               <FormControl mt={3}>
->>>>>>> incluye listas de agregados
                 <HStack spacing={10}>
                   <FormLabel htmlFor="req">
                     ¿Es obligatoria la escogencia de uno?
                   </FormLabel>
-<<<<<<< HEAD
-                  <input type="checkbox" {...register("req")} />
-                </HStack>
-              </FormControl>
-
-=======
                   <input type="checkbox" {...register('req')} />
                 </HStack>
               </FormControl>
@@ -271,7 +178,6 @@ export const ModalAggEdit = ({
                 </FormControl>
               </HStack>
 
->>>>>>> incluye listas de agregados
               <ul mt={3}>
                 {fields.map((element, index) => (
                   <Flex mt={2} key={element.id}>
@@ -291,15 +197,9 @@ export const ModalAggEdit = ({
                       {...register(`items.${index}.price`)}
                     />
                     <Button
-<<<<<<< HEAD
                       colorScheme={"blue"}
                       w={40}
                       leftIcon={<MdDeleteSweep />}
-=======
-                      colorScheme={'blue'}
-                      w={40}
-                      leftIcon={<AiFillDelete />}
->>>>>>> incluye listas de agregados
                       onClick={() => remove(index)}
                     >
                       Borrar
@@ -309,9 +209,7 @@ export const ModalAggEdit = ({
               </ul>
               <HStack mt={3}>
                 <Button
-<<<<<<< HEAD
                   colorScheme={"blue"}
-                  leftIcon={<MdPostAdd />}
                   isDisabled={showControl}
                   w={340}
                   onClick={() => append({ item: "", price: 0 })}
@@ -323,16 +221,6 @@ export const ModalAggEdit = ({
                   isDisabled={showControl}
                   type="submit"
                 >
-=======
-                  colorScheme={'blue'}
-                  leftIcon={<AiFillFileAdd />}
-                  w={340}
-                  onClick={() => append({ item: '', price: 0 })}
-                >
-                  Agregar
-                </Button>
-                <Button colorScheme={'blue'} type="submit">
->>>>>>> incluye listas de agregados
                   Cerrar Lista
                 </Button>
               </HStack>

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import React from "react";
-=======
-import React, { useState } from "react";
->>>>>>> incluye listas de agregados
+import React, { useState } from 'react';
 import {
   Input,
   Grid,
@@ -14,22 +10,15 @@ import {
   VStack,
   useToast,
   Spinner,
-} from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
-import { PageHeader } from "../header/PageHeader";
-import { comercioObj } from "../helpers/comercioObj";
-import { useMutateAddShop, useMutateUpdateShop } from "../hooks/commerceHooks";
-import { useQueryClient } from "react-query";
-<<<<<<< HEAD
+} from '@chakra-ui/react';
+import { useForm } from 'react-hook-form';
+import { PageHeader } from '../header/PageHeader';
+import { comercioObj } from '../helpers/comercioObj';
+import { useMutateAddShop, useMutateUpdateShop } from '../hooks/commerceHooks';
+import { useQueryClient } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 
 export const Pag5RegNeg = () => {
-  const toast = useToast();
-
-=======
-import { useNavigate } from "react-router-dom";
-
-export const Pag5RegNeg = () => {
->>>>>>> incluye listas de agregados
   const {
     register,
     handleSubmit,
@@ -37,41 +26,34 @@ export const Pag5RegNeg = () => {
     formState: { errors },
   } = useForm();
 
-<<<<<<< HEAD
-  const commerce = comercioObj();
-=======
   const toast = useToast();
-  const [showBtn, setShowBtn] = useState("none");
+  const [showBtn, setShowBtn] = useState('none');
 
   const commerce = comercioObj();
 
->>>>>>> incluye listas de agregados
   const queryClient = useQueryClient();
-  const shopinf = queryClient.getQueryData(["login"]) || null;
+  const shopinf = queryClient.getQueryData(['login']) || null;
   const resultUpdate = useMutateUpdateShop(shopinf?.id);
   const resultAdd = useMutateAddShop();
-<<<<<<< HEAD
-=======
   const navigate = useNavigate();
->>>>>>> incluye listas de agregados
 
-  const onSubmit = (e) => {
-    sessionStorage.setItem("passwd", e.password);
+  const onSubmit = e => {
+    sessionStorage.setItem('passwd', e.password);
     commerce.passwd = e.password;
     if (!shopinf?.id) {
       resultAdd.mutate(commerce, {
         onError: () => {
           toast({
             title: `el error es:${resultAdd.error}`,
-            status: "warning",
+            status: 'warning',
             duration: 6000,
             isClosable: true,
           });
         },
         onSuccess: () => {
           return toast({
-            title: "Su negocio ha sido agregado a nuestra Base de Datos",
-            status: "success",
+            title: 'Su negocio ha sido agregado a nuestra Base de Datos',
+            status: 'success',
             duration: 6000,
             isClosable: true,
           });
@@ -83,27 +65,24 @@ export const Pag5RegNeg = () => {
       resultUpdate.mutate(commerce, {
         onError: () => {
           toast({
-            title: "No se pudo actualizar el registro. Intente más tarde",
-            status: "warning",
+            title: 'No se pudo actualizar el registro. Intente más tarde',
+            status: 'warning',
             duration: 6000,
             isClosable: true,
           });
         },
-        onSuccess: (data) => {
+        onSuccess: data => {
           toast({
             title:
-              "Los datos de su negocio fueron actualizados en la Base de Datos",
-            status: "success",
+              'Los datos de su negocio fueron actualizados en la Base de Datos',
+            status: 'success',
             duration: 6000,
             isClosable: true,
           });
         },
       });
     }
-<<<<<<< HEAD
-=======
-    setShowBtn("inline");
->>>>>>> incluye listas de agregados
+    setShowBtn('inline');
   };
 
   return (
@@ -111,8 +90,8 @@ export const Pag5RegNeg = () => {
       <Center w="100%">
         <VStack>
           <PageHeader
-            pageName={"Registro de Contraseña"}
-            pageTitle={"Registrar Nuevo Negocio"}
+            pageName={'Registro de Contraseña'}
+            pageTitle={'Registrar Nuevo Negocio'}
           />
           <form onSubmit={handleSubmit(onSubmit)}>
             <Grid templateColumns="repeat(2, 1fr)" gap={6} mt={3}>
@@ -121,9 +100,9 @@ export const Pag5RegNeg = () => {
                 <Input
                   type="password"
                   borderColor="gray.400"
-                  {...register("password", {
-                    required: "La contraseña es obligatoria",
-                    minLength: { value: 7, message: "Mínimo 7 digitos" },
+                  {...register('password', {
+                    required: 'La contraseña es obligatoria',
+                    minLength: { value: 7, message: 'Mínimo 7 digitos' },
                   })}
                 />
                 <FormErrorMessage>
@@ -136,18 +115,18 @@ export const Pag5RegNeg = () => {
                 <Input
                   type="password"
                   borderColor="gray.400"
-                  {...register("password2", {
-                    required: "Confirme la Contraseña",
+                  {...register('password2', {
+                    required: 'Confirme la Contraseña',
                     validate: {
-                      coincidePswAnterior: (value) => {
+                      coincidePswAnterior: value => {
                         const { password } = getValues();
                         return (
                           password === value ||
-                          "Las contraseñas deben coincidir"
+                          'Las contraseñas deben coincidir'
                         );
                       },
                     },
-                    minLength: { value: 7, message: "Mínimo 7 digitos" },
+                    minLength: { value: 7, message: 'Mínimo 7 digitos' },
                   })}
                 />
                 <FormErrorMessage>
@@ -160,8 +139,6 @@ export const Pag5RegNeg = () => {
             <Button type="submit" colorScheme="blue" size="lg" mt={6} w="100%">
               Registrar Negocio...
             </Button>
-<<<<<<< HEAD
-=======
             <Button
               display={showBtn}
               colorScheme="blue"
@@ -169,12 +146,11 @@ export const Pag5RegNeg = () => {
               mt={6}
               w="100%"
               onClick={() => {
-                navigate("/ds/dashboard");
+                navigate('/ds/dashboard');
               }}
             >
               Ir a pagina de validación usuario"
             </Button>
->>>>>>> incluye listas de agregados
           </form>
         </VStack>
       </Center>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   Button,
   VStack,
@@ -11,47 +11,41 @@ import {
   Image,
   Flex,
   Text,
-} from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+} from '@chakra-ui/react';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
-const baseURL = process.env.REACT_APP_API_URL + "/commerce";
+const baseURL = process.env.REACT_APP_API_URL + '/commerce';
 
 export const UpFile = ({ nextPage, imgfile }) => {
   let navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const [alertFile, setalertFile] = useState(false);
   const [alertLoad, setalertLoad] = useState(false);
-  const [showButton, setshowButton] = useState("block");
+  const [showButton, setshowButton] = useState('block');
   const [showImg, setShowImg] = useState(imgfile);
 
   useEffect(() => {
-    console.log("nextpage", nextPage, "imgfile", imgfile);
-    nextPage ? setshowButton("block") : setshowButton("none");
-  }, [showButton, nextPage]);
+    console.log('nextpage', nextPage, 'imgfile', imgfile);
+    nextPage ? setshowButton('block') : setshowButton('none');
+  }, [showButton, nextPage, imgfile]);
 
-  const Cargar = async (data) => {
+  const Cargar = async data => {
     const img = data.picture[0];
     const nameImg = data.picture[0].name;
-    const imgName = process.env.REACT_APP_IMG_URL + "/" + nameImg;
-<<<<<<< HEAD
-    setShowImg(imgName);
-
-    if (img) {
-=======
+    const imgName = process.env.REACT_APP_IMG_URL + '/' + nameImg;
 
     if (img) {
       setShowImg(imgName);
->>>>>>> incluye listas de agregados
       const formData = new FormData();
-      formData.append("file", img);
+      formData.append('file', img);
       try {
         const res = await fetch(baseURL, {
-          method: "POST",
+          method: 'POST',
           body: formData,
         });
         if (res.ok) {
-          sessionStorage.setItem("imgName", imgName);
+          sessionStorage.setItem('imgName', imgName);
           setalertLoad(true);
         } else {
           throw await res.json();
@@ -62,7 +56,7 @@ export const UpFile = ({ nextPage, imgfile }) => {
     }
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = data => {
     data.picture.length > 0 ? Cargar(data) : setalertFile(true);
   };
 
@@ -71,11 +65,11 @@ export const UpFile = ({ nextPage, imgfile }) => {
   };
 
   return (
-    <Flex justifyContent={"center"}>
+    <Flex justifyContent={'center'}>
       {alertFile ? (
         <Alert status="warning">
           <AlertIcon />
-          <AlertDescription display={"block"}>
+          <AlertDescription display={'block'}>
             Haga click en el boton seleccionar archivo para cargar el logo o
             foto desde su PC. Si no tiene, ignore este paso
           </AlertDescription>
@@ -101,10 +95,10 @@ export const UpFile = ({ nextPage, imgfile }) => {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <VStack spacing={3}>
-          <Text fontSize={"sm"}>
+          <Text fontSize={'sm'}>
             El archivo de la foto o logo debe ser JPEG.
           </Text>
-          <Text fontSize={"sm"}>El tamaño, no mayor a 700kbps</Text>
+          <Text fontSize={'sm'}>El tamaño, no mayor a 700kbps</Text>
           <Image
             boxSize="100px"
             objectFit="cover"
@@ -118,7 +112,7 @@ export const UpFile = ({ nextPage, imgfile }) => {
             type="file"
             name="picture"
             borderColor="gray.300"
-            {...register("picture")}
+            {...register('picture')}
           />
           <VStack>
             <Button colorScheme="blue" w="100%" size="lg" type="submit">

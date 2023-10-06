@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import React, { useState } from "react";
-=======
 import React, { useState } from 'react';
->>>>>>> incluye listas de agregados
 import {
   Container,
   FormControl,
@@ -16,27 +12,15 @@ import {
   Collapse,
   HStack,
   Flex,
-<<<<<<< HEAD
 } from "@chakra-ui/react";
 
 import { useForm, useFieldArray } from "react-hook-form";
-import { MdPostAdd, MdDeleteSweep } from "react-icons/md";
+//import { MdPostAdd, MdDeleteSweep } from "react-icons/md";
 import { UpProduct } from "./UpProduct";
 
 let list = [];
 let items = [];
 let aggregateList = [];
-=======
-} from '@chakra-ui/react';
-
-import { useForm, useFieldArray } from 'react-hook-form';
-import { UpProduct } from './UpProduct';
-import { AiFillFileAdd, AiFillDelete } from 'react-icons/ai';
-let list = [];
-let items = [];
-let aggregateList = [];
-let aggregates = [];
->>>>>>> incluye listas de agregados
 
 export const AggregatesProduct = () => {
   const {
@@ -49,21 +33,13 @@ export const AggregatesProduct = () => {
 
   const { fields, append, remove } = useFieldArray({
     control,
-<<<<<<< HEAD
     name: "items",
-=======
-    name: 'items',
->>>>>>> incluye listas de agregados
   });
 
   const [showHelp, setshowHelp] = useState(false);
   const [showControl, setshowControl] = useState(true);
   const [disabledPrice, setdisabledPrice] = useState(true);
 
-<<<<<<< HEAD
-  const onSubmit = (e) => {
-    const cadOblig = e.req ? "obligatorio" : "";
-=======
   const onSubmit = e => {
     const cadOblig = e.maxItemsNum > 0 ? 'obligatorio' : '';
 
@@ -72,23 +48,11 @@ export const AggregatesProduct = () => {
       e.items.pop();
     }
 
->>>>>>> incluye listas de agregados
     list.push(
       {
         title: e.title,
       },
       {
-<<<<<<< HEAD
-        oblig: cadOblig,
-      },
-      e.items
-    );
-    aggregateList.push(list);
-    sessionStorage.setItem("aggregates", JSON.stringify(aggregateList));
-    setValue("title", "");
-    setValue("item", "");
-    setValue("req", false);
-=======
         subtitle: e.subtitle,
       },
       {
@@ -105,7 +69,7 @@ export const AggregatesProduct = () => {
 
     aggregateList.push(list);
 
-    aggregates.push(aggregateList);
+  //  aggregates.push(aggregateList);
 
     sessionStorage.setItem('aggregates', JSON.stringify(aggregateList));
 
@@ -115,7 +79,6 @@ export const AggregatesProduct = () => {
     setValue('req', false);
     setValue('minItemsNum', null);
     setValue('maxItemsNum', null);
->>>>>>> incluye listas de agregados
     remove();
     setshowControl(true);
   };
@@ -125,14 +88,9 @@ export const AggregatesProduct = () => {
   };
 
   const setDefault = () => {
-<<<<<<< HEAD
-    setValue("title", "");
-    setValue("item", "");
-=======
     setValue('title', '');
     setValue('subtitle', '');
     setValue('item', '');
->>>>>>> incluye listas de agregados
     list = [];
     items = [];
   };
@@ -155,22 +113,14 @@ export const AggregatesProduct = () => {
 
   return (
     <Container>
-<<<<<<< HEAD
       {" "}
-=======
-      {' '}
->>>>>>> incluye listas de agregados
       <VStack>
         <form onSubmit={handleSubmit(onSubmit)}>
           <hr width="340px" />
           <HStack spacing={6} my={3}>
             <Button
               colorScheme="blue"
-<<<<<<< HEAD
               variant={"link"}
-=======
-              variant={'link'}
->>>>>>> incluye listas de agregados
               size="lg"
               overflow="hidden"
               onClick={handleShow}
@@ -180,11 +130,7 @@ export const AggregatesProduct = () => {
             <h1>/</h1>
             <Button
               colorScheme="blue"
-<<<<<<< HEAD
               variant={"link"}
-=======
-              variant={'link'}
->>>>>>> incluye listas de agregados
               size="lg"
               onClick={setAggregate}
             >
@@ -193,11 +139,7 @@ export const AggregatesProduct = () => {
             <h1>/</h1>
             <Button
               colorScheme="blue"
-<<<<<<< HEAD
               variant={"link"}
-=======
-              variant={'link'}
->>>>>>> incluye listas de agregados
               size="lg"
               onClick={setAdd}
             >
@@ -235,17 +177,10 @@ export const AggregatesProduct = () => {
             <Input
               type="text"
               w={330}
-<<<<<<< HEAD
               placeholder="Ej: Escoge la Ensalada"
               borderColor="gray.400"
               {...register("title", {
                 required: "Campo Obligatorio",
-=======
-              placeholder="Ejemplo: Escoge la Ensalada"
-              borderColor="gray.400"
-              {...register('title', {
-                required: 'Campo Obligatorio',
->>>>>>> incluye listas de agregados
               })}
             />
             <FormErrorMessage>
@@ -253,15 +188,6 @@ export const AggregatesProduct = () => {
             </FormErrorMessage>
           </FormControl>
 
-<<<<<<< HEAD
-          <FormControl isDisabled={showControl} mt={3}>
-            <HStack spacing={10}>
-              <FormLabel htmlFor="req">
-                ¿Es obligatoria la escogencia de uno?
-              </FormLabel>
-              <input type="checkbox" {...register("req")} />
-            </HStack>
-=======
           <FormControl isDisabled={showControl} isInvalid={errors.subtitle}>
             <FormLabel w={340} htmlFor="subtitle" mt={3}>
               descripcion de límites
@@ -315,7 +241,6 @@ export const AggregatesProduct = () => {
             <FormErrorMessage>
               {errors.maxItemsNum && errors.maxItemsNum.message}
             </FormErrorMessage>
->>>>>>> incluye listas de agregados
           </FormControl>
 
           {fields.map((element, index) => (
@@ -337,15 +262,8 @@ export const AggregatesProduct = () => {
                 {...register(`items.${index}.price`)}
               />
               <Button
-<<<<<<< HEAD
                 colorScheme={"blue"}
                 w={59}
-                leftIcon={<MdDeleteSweep />}
-=======
-                colorScheme={'blue'}
-                w={59}
-                leftIcon={<AiFillDelete />}
->>>>>>> incluye listas de agregados
                 onClick={() => remove(index)}
               />
             </Flex>
@@ -353,29 +271,16 @@ export const AggregatesProduct = () => {
 
           <HStack mt={3} w={340} mx={4}>
             <Button
-<<<<<<< HEAD
               colorScheme={"blue"}
               isDisabled={showControl}
-              leftIcon={<MdPostAdd />}
               w={160}
               onClick={() => append({ item: "", price: 0 })}
-=======
-              colorScheme={'blue'}
-              isDisabled={showControl}
-              leftIcon={<AiFillFileAdd />}
-              w={160}
-              onClick={() => append({ item: '', price: 0 })}
->>>>>>> incluye listas de agregados
             >
               Agregar
             </Button>
             <Button
               w={160}
-<<<<<<< HEAD
               colorScheme={"blue"}
-=======
-              colorScheme={'blue'}
->>>>>>> incluye listas de agregados
               isDisabled={showControl}
               type="submit"
             >

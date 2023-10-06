@@ -16,7 +16,6 @@ export const useMutateAddProduct = (id = null) => {
   });
 };
 
-<<<<<<< HEAD
 
 /* export const useMutateAggregate = (id = null) => {
   const queryClient = useQueryClient(aggregate);
@@ -29,8 +28,6 @@ export const useMutateAddProduct = (id = null) => {
   return useMutation(added);
 }; */
 
-=======
->>>>>>> incluye listas de agregados
 export const useMutateDelectProduct = () => {
   const queryClient = useQueryClient();
   const deleteProduct = async (id) => {
@@ -64,10 +61,7 @@ export const useMutateUpdateProduct = () => {
 };
 
 export const useMutateReplaceProduct = (productId) => {
-<<<<<<< HEAD
-=======
   const queryClient = useQueryClient();
->>>>>>> incluye listas de agregados
   const replaceProduct = async (product) => {
     const resp = await fetchConToken(
       `product/replace/${productId}`,
@@ -77,15 +71,11 @@ export const useMutateReplaceProduct = (productId) => {
     const data = await resp.json();
     return data;
   };
-<<<<<<< HEAD
-  return useMutation(replaceProduct);
-=======
   return useMutation(replaceProduct, {
     onSuccess: () => {
       return queryClient.invalidateQueries(["listproducts"]);
     },
   });
->>>>>>> incluye listas de agregados
 };
 
 export const useMutateEnabledAll = () => {

@@ -24,11 +24,7 @@ export const MenuLinks = ({ isOpen }) => {
       flexBasis={{ base: "100%", md: "auto" }}
     >
       <Stack
-<<<<<<< HEAD
-        spacing={4}
-=======
         spacing={2}
->>>>>>> incluye listas de agregados
         align="center"
         justify={["center", "space-between", "flex-end", "flex-end"]}
         direction={["column", "row", "row", "row"]}
@@ -121,7 +117,6 @@ export const MenuLinks = ({ isOpen }) => {
             <MenuItem color={["orange.600"]}>Horario</MenuItem>
           </MenuList>
         </Menu>
-<<<<<<< HEAD
 
         <Button
           size="sm"
@@ -132,8 +127,6 @@ export const MenuLinks = ({ isOpen }) => {
         >
           Salir
         </Button>
-=======
->>>>>>> incluye listas de agregados
       </Stack>
       <AddressModal />
     </Box>

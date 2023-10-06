@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Alert,
   AlertIcon,
@@ -8,27 +8,27 @@ import {
   Spinner,
   Stack,
   VStack,
-} from "@chakra-ui/react";
-import { useQueryClient } from "react-query";
-import { useMutateAddProduct } from "../hooks/productHooks";
+} from '@chakra-ui/react';
+import { useQueryClient } from 'react-query';
+import { useMutateAddProduct } from '../hooks/productHooks';
 
 export const UpProduct = () => {
   const queryClient = useQueryClient();
 
-  const [showAlert, setshowAlert] = useState({ show: false, message: "" });
+  const [showAlert, setshowAlert] = useState({ show: false, message: '' });
   const [disabledBtn, setdisabledBtn] = useState(false);
-  const id = sessionStorage.getItem("id");
+  const id = sessionStorage.getItem('id');
 
   const { mutate, isLoading, isError, isSuccess } = useMutateAddProduct(id);
 
-  const category = sessionStorage.getItem("category");
-  const name = sessionStorage.getItem("name");
-  const description = sessionStorage.getItem("description");
-  const price = sessionStorage.getItem("price");
-  const imgName = sessionStorage.getItem("imgName");
-  const listAdd = sessionStorage.getItem("aggregates");
+  const category = sessionStorage.getItem('category');
+  const name = sessionStorage.getItem('name');
+  const description = sessionStorage.getItem('description');
+  const price = sessionStorage.getItem('price');
+  const imgName = sessionStorage.getItem('imgName');
+  const listAdd = sessionStorage.getItem('aggregates');
   const aggregates = JSON.parse(listAdd);
-  const days = sessionStorage.getItem("daysno");
+  const days = sessionStorage.getItem('daysno');
   const daysno = JSON.parse(days);
 
   const handleRegister = () => {
@@ -37,36 +37,27 @@ export const UpProduct = () => {
       name: name,
       description: description,
       price: price,
-      enabled: "no",
+      enabled: 'no',
       logo: imgName,
       commerce: id,
       aggregates: aggregates,
       daysno: daysno,
     };
-<<<<<<< HEAD
-
-=======
-    console.log("nuevo producto", newProduct);
->>>>>>> incluye listas de agregados
     mutate(newProduct, {
       onError: () => {
         setshowAlert({
           show: true,
-          message: "La operación no se completó. Intente mas tarde",
+          message: 'La operación no se completó. Intente mas tarde',
         });
       },
       onSuccess: () => {
         setshowAlert({
           show: true,
-          message: "El producto fue actualizado en la Base de Datos",
+          message: 'El producto fue actualizado en la Base de Datos',
         });
-        queryClient.invalidateQueries("listproduct");
+        queryClient.invalidateQueries('listproduct');
         setdisabledBtn(true);
-<<<<<<< HEAD
-        localStorage.clear();
-=======
         sessionStorage.clear();
->>>>>>> incluye listas de agregados
       },
     });
   };
@@ -103,7 +94,7 @@ export const UpProduct = () => {
         colorScheme="blue"
         isDisabled={disabledBtn}
         size="lg"
-        w={"100%"}
+        w={'100%'}
         onClick={handleRegister}
       >
         Registrar Producto

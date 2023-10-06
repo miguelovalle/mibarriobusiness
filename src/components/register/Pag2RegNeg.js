@@ -30,29 +30,14 @@ export const Pag2RegNeg = () => {
     formState: { errors },
     setValue,
   } = useForm();
-<<<<<<< HEAD
-  const [showMap, setshowMap] = useState(false);
-  const [center, setcenter] = useState(0);
-=======
 
   const [showMap, setshowMap] = useState(false);
   const [center, setcenter] = useState(0);
   const [showBtn, setShowBtn] = useState(true);
->>>>>>> incluye listas de agregados
 
   const queryClient = useQueryClient();
   const shopinf = queryClient.getQueryData(["login"]) || null;
   const { data, isSuccess } = useShop(shopinf?.id);
-<<<<<<< HEAD
-  const commerce = data?.commerce;
-  if (isSuccess) {
-    if (data.ok) {
-      setValue("principal", commerce.addrritems?.principal);
-      setValue("cruceA", commerce.addrritems?.cruceA);
-      setValue("cruceB", commerce.addrritems?.cruceB);
-      setValue("puerta", commerce.addrritems?.puerta);
-      setValue("detalles", commerce.addrritems?.detalles);
-=======
   const dataAddrr = data?.result?.addrritems;
   if (isSuccess) {
     if (data.ok) {
@@ -63,7 +48,6 @@ export const Pag2RegNeg = () => {
         setValue("puerta", dataAddrr?.puerta);
         setValue("detalles", dataAddrr?.detalles);
       }
->>>>>>> incluye listas de agregados
     }
   }
 
@@ -79,14 +63,11 @@ export const Pag2RegNeg = () => {
       "cross",
       `${e.principal} ${e.cruceA} con ${e.cruceB}`
     );
-<<<<<<< HEAD
-=======
     sessionStorage.setItem("principal", e.principal);
     sessionStorage.setItem("cruceA", e.cruceA);
     sessionStorage.setItem("cruceB", e.cruceB);
     sessionStorage.setItem("puerta", e.puerta);
     sessionStorage.setItem("detalles", e.detalles);
->>>>>>> incluye listas de agregados
 
     const position = await geolocation(placeName).then((position) => {
       setcenter({
@@ -98,10 +79,7 @@ export const Pag2RegNeg = () => {
     });
 
     setshowMap(true);
-<<<<<<< HEAD
-=======
     setShowBtn(false);
->>>>>>> incluye listas de agregados
   };
 
   const handleNext = () => {
@@ -199,10 +177,7 @@ export const Pag2RegNeg = () => {
 
               <Button
                 mt="6"
-<<<<<<< HEAD
-=======
                 disabled={showBtn}
->>>>>>> incluye listas de agregados
                 rightIcon={<CgPlayTrackNextR />}
                 colorScheme="blue"
                 size="lg"

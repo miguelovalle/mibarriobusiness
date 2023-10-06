@@ -10,13 +10,8 @@ export const Pag3RegNeg = () => {
   const data = queryClient.getQueryData(["login"]) || null;
 
   const perfil = queryClient.getQueryData(["shop", data?.id]) || null;
-<<<<<<< HEAD
 
   const imgfile = perfil ? perfil?.commerce?.imgName : null;
-=======
-  console.log(perfil);
-  const imgfile = perfil ? perfil?.result?.imgName : null;
->>>>>>> incluye listas de agregados
 
   return (
     <Flex mb={2} p={2}>

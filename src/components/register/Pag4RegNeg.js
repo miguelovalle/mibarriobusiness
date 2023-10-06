@@ -29,15 +29,6 @@ export const Pag4RegNeg = () => {
   const queryClient = useQueryClient();
   const shopinf = queryClient.getQueryData(["login"]) || null;
   const { data, isSuccess } = useShop(shopinf?.id);
-<<<<<<< HEAD
-  const commerce = data?.commerce;
-
-  if (isSuccess) {
-    if (data.ok) {
-      setValue("contact", commerce.contact);
-      setValue("phone", commerce.phone);
-      setValue("email", commerce.email);
-=======
   const commerce = data?.result;
 
   if (isSuccess) {
@@ -47,7 +38,6 @@ export const Pag4RegNeg = () => {
         setValue("phone", commerce.phone);
         setValue("email", commerce.email);
       }
->>>>>>> incluye listas de agregados
     }
   }
 

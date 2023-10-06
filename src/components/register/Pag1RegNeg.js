@@ -12,13 +12,10 @@ import {
   Select,
   Tooltip,
   Spinner,
-<<<<<<< HEAD
-=======
   Box,
   Checkbox,
   Text,
   HStack,
->>>>>>> incluye listas de agregados
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -37,11 +34,8 @@ export const Pag1RegNeg = () => {
     setValue,
   } = useForm();
 
-<<<<<<< HEAD
-=======
   let daysNo = [];
 
->>>>>>> incluye listas de agregados
   const queryClient = useQueryClient();
 
   const shopinf = queryClient.getQueryData(["login"]) || null;
@@ -52,13 +46,6 @@ export const Pag1RegNeg = () => {
 
   if (isSuccess) {
     if (data.ok) {
-<<<<<<< HEAD
-      setValue("tipo", commerce?.tipo);
-      setValue("name", commerce?.name);
-      setValue("emblem", commerce?.emblem);
-      setValue("specialty", commerce?.specialty);
-      setValue("categories", commerce?.categories);
-=======
       if (!!commerce) {
         setValue("tipo", commerce?.tipo);
         setValue("name", commerce?.name);
@@ -68,7 +55,6 @@ export const Pag1RegNeg = () => {
         setValue("hInicio", commerce?.hInicio);
         setValue("hFinal", commerce?.hFinal);
       }
->>>>>>> incluye listas de agregados
     }
   }
 
@@ -78,8 +64,6 @@ export const Pag1RegNeg = () => {
     sessionStorage.setItem("emblem", e.emblem);
     sessionStorage.setItem("specialty", e.specialty);
     sessionStorage.setItem("categories", e.categories);
-<<<<<<< HEAD
-=======
     !e.d && daysNo.push(0);
     !e.l && daysNo.push(1);
     !e.m && daysNo.push(2);
@@ -90,7 +74,6 @@ export const Pag1RegNeg = () => {
     sessionStorage.setItem("daysno", JSON.stringify(daysNo));
     sessionStorage.setItem("hInicio", e.hInicio);
     sessionStorage.setItem("hFinal", e.hFinal);
->>>>>>> incluye listas de agregados
     navigate("/auth/pag2");
   };
 
@@ -99,13 +82,8 @@ export const Pag1RegNeg = () => {
       <Center w="100%">
         <VStack>
           <PageHeader
-<<<<<<< HEAD
-            pageName={"Datos del Negocio"}
-            pageTitle={"Registrar Nuevo Negocio"}
-=======
             pageName={"Datos Básicos"}
             pageTitle={"Registro de un Nuevo Negocio"}
->>>>>>> incluye listas de agregados
           />
           <form onSubmit={handleSubmit(onSubmit)}>
             <Grid templateColumns="repeat(2, 1fr)" gap={6} mt={3}>
@@ -198,8 +176,6 @@ export const Pag1RegNeg = () => {
                   {errors.categories && errors.categories.message}
                 </FormErrorMessage>
               </FormControl>
-<<<<<<< HEAD
-=======
               <VStack>
                 <Text>Días de Atención</Text>
                 <Box
@@ -268,7 +244,6 @@ export const Pag1RegNeg = () => {
                   </FormControl>
                 </HStack>
               </VStack>
->>>>>>> incluye listas de agregados
             </Grid>
             {isLoading && <Spinner />}
 
