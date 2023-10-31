@@ -14,7 +14,6 @@ import {
   Text,
   VStack,
   Tooltip,
-  toast,
   useToast,
 } from "@chakra-ui/react";
 import { FiTrash2, FiEdit } from "react-icons/fi";

@@ -17,7 +17,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { useForm, useFieldArray } from "react-hook-form";
-import { MdPostAdd, MdDeleteSweep } from "react-icons/md";
+import {  MdDeleteSweep } from "react-icons/md";
 
 let list = [];
 let items = [];

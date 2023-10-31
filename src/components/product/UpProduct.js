@@ -100,5 +100,6 @@ export const UpProduct = () => {
         Registrar Producto
       </Button>
     </Container>
+    
   );
 };

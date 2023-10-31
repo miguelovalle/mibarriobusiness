@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Input,
   FormControl,
@@ -11,13 +11,14 @@ import {
   InputLeftElement,
   InputRightElement,
   Spinner,
-} from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
-import { PageHeader } from "../header/PageHeader";
-import { BiEnvelope } from "react-icons/bi";
-import { BiHide } from "react-icons/bi";
-import { Link, useNavigate } from "react-router-dom";
-import { useLogin } from "../hooks/loginHooks";
+  useToast,
+} from '@chakra-ui/react';
+import { useForm } from 'react-hook-form';
+import { PageHeader } from '../header/PageHeader';
+import { BiEnvelope } from 'react-icons/bi';
+import { BiHide } from 'react-icons/bi';
+import { Link, useNavigate } from 'react-router-dom';
+import { useLogin } from '../hooks/loginHooks';
 
 export const LoginCommerce = () => {
   let navigate = useNavigate();
@@ -31,6 +32,8 @@ export const LoginCommerce = () => {
 
   const [msg, setmsg] = useState(null);
 
+  const toast = useToast();
+
   const mail = useRef({ email: null, password: null });
 
   const { data, isSuccess, isLoading, error, refetch } = useLogin(mail.current);
@@ -41,16 +44,27 @@ export const LoginCommerce = () => {
     refetch();
     if (isSuccess) {
       if (data.ok === true) {
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("token-init-date", new Date().getTime());
-        navigate("/ds/dashboard");
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('token-init-date', new Date().getTime());
+        navigate('/ds/dashboard');
       }
-    } else {
-      setmsg("error de comunicación. POr favor, intente de nuevo mas tarde");
     }
+    if (data?.ok === false) {
+      setmsg(data?.msg);
+      console.log(data?.msg);
+      toast({
+        title: 'Inicio de sesión incorrecto',
+        description: data?.msg,
+        status: 'warning',
+        position: 'top',
+        duration: 9000,
+        isClosable: true,
+      });
+    }
+    setmsg('problema comunicación. POr favor, intente de nuevo mas tarde');
   }, [data?.ok, mail.current, isSuccess, refetch, navigate]);
 
-  const onSubmit = (e) => {
+  const onSubmit = e => {
     mail.current = { email: e.email, password: e.password };
   };
 
@@ -58,7 +72,7 @@ export const LoginCommerce = () => {
     <Flex mb={2} p={2}>
       <Center w="100%">
         <VStack>
-          <PageHeader pageTitle={"Ingresar a Plataforma"} />
+          <PageHeader pageTitle={'Ingresar a Plataforma'} />
 
           <form onSubmit={handleSubmit(onSubmit)}>
             <VStack>
@@ -72,8 +86,8 @@ export const LoginCommerce = () => {
                     type="email"
                     placeholder="Correo Electrónico"
                     borderColor="gray.400"
-                    {...register("email", {
-                      required: "El correo es obligatorio",
+                    {...register('email', {
+                      required: 'El correo es obligatorio',
                     })}
                   />
                 </InputGroup>
@@ -86,11 +100,11 @@ export const LoginCommerce = () => {
               <FormControl isInvalid={errors.password}>
                 <InputGroup>
                   <Input
-                    type={showPasswd ? "text" : "password"}
+                    type={showPasswd ? 'text' : 'password'}
                     borderColor="gray.400"
                     placeholder="Contraseña"
-                    {...register("password", {
-                      required: "La Contraseña es obligatoria",
+                    {...register('password', {
+                      required: 'La Contraseña es obligatoria',
                     })}
                   />
                   <InputRightElement>
