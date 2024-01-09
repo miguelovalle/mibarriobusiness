@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Box,
   Flex,
   Select,
+  Link,
   Stack,
   HStack,
   useDisclosure,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 
-import { ModalProduct } from './ModalProduct';
-import { SwitchEnabled } from './SwitchEnabled';
-import { SwitchEnabledAll } from './SwitchEnabledAll';
+import { ModalProduct } from "./ModalProduct";
+import { SwitchEnabled } from "./SwitchEnabled";
+import { SwitchEnabledAll } from "./SwitchEnabledAll";
 
 export const ProductList = ({ list, id, categories }) => {
   // render the list. onclick show modalproduct with the data product
@@ -20,8 +21,8 @@ export const ProductList = ({ list, id, categories }) => {
 
   const enabl = list[0]?.enabled;
 
-  const handleChangeSelect = e => {
-    const listState = list.filter(item => {
+  const handleChangeSelect = (e) => {
+    const listState = list.filter((item) => {
       return item.category === e.target.value;
     });
     setListFiltered(listState);
@@ -29,7 +30,7 @@ export const ProductList = ({ list, id, categories }) => {
 
   return (
     <Stack direction="row" w="full">
-      <Flex direction={'column'}>
+      <Flex direction={"column"}>
         <HStack spacing={4}>
           <Select
             placeholder="Filtrar por Categoría"
@@ -68,8 +69,8 @@ export const ProductList = ({ list, id, categories }) => {
             <SwitchEnabled item={item} />
 
             <Box w="48px" h={12}>
-              {' '}
-              {item.enabled}{' '}
+              {" "}
+              {item.enabled}{" "}
             </Box>
           </Flex>
         ))}

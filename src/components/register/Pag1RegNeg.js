@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Input,
   Grid,
@@ -16,13 +16,13 @@ import {
   Checkbox,
   Text,
   HStack,
-} from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { CgPlayTrackNextR } from "react-icons/cg";
-import { PageHeader } from "../header/PageHeader";
-import { useQueryClient } from "react-query";
-import { useShop } from "../hooks/commerceHooks";
+} from '@chakra-ui/react';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { CgPlayTrackNextR } from 'react-icons/cg';
+import { PageHeader } from '../header/PageHeader';
+import { useQueryClient } from 'react-query';
+import { useShop } from '../hooks/commerceHooks';
 
 export const Pag1RegNeg = () => {
   let navigate = useNavigate();
@@ -38,7 +38,7 @@ export const Pag1RegNeg = () => {
 
   const queryClient = useQueryClient();
 
-  const shopinf = queryClient.getQueryData(["login"]) || null;
+  const shopinf = queryClient.getQueryData(['login']) || null;
 
   const { data, isLoading, isSuccess } = useShop(shopinf?.id);
 
@@ -47,23 +47,23 @@ export const Pag1RegNeg = () => {
   if (isSuccess) {
     if (data.ok) {
       if (!!commerce) {
-        setValue("tipo", commerce?.tipo);
-        setValue("name", commerce?.name);
-        setValue("emblem", commerce?.emblem);
-        setValue("specialty", commerce?.specialty);
-        setValue("categories", commerce?.categories);
-        setValue("hInicio", commerce?.hInicio);
-        setValue("hFinal", commerce?.hFinal);
+        setValue('tipo', commerce?.tipo);
+        setValue('name', commerce?.name);
+        setValue('emblem', commerce?.emblem);
+        setValue('specialty', commerce?.specialty);
+        setValue('categories', commerce?.categories);
+        setValue('hInicio', commerce?.hInicio);
+        setValue('hFinal', commerce?.hFinal);
       }
     }
   }
 
-  const onSubmit = (e) => {
-    sessionStorage.setItem("tipo", e.tipo);
-    sessionStorage.setItem("name", e.name);
-    sessionStorage.setItem("emblem", e.emblem);
-    sessionStorage.setItem("specialty", e.specialty);
-    sessionStorage.setItem("categories", e.categories);
+  const onSubmit = e => {
+    sessionStorage.setItem('tipo', e.tipo);
+    sessionStorage.setItem('name', e.name);
+    sessionStorage.setItem('emblem', e.emblem);
+    sessionStorage.setItem('specialty', e.specialty);
+    sessionStorage.setItem('categories', e.categories);
     !e.d && daysNo.push(0);
     !e.l && daysNo.push(1);
     !e.m && daysNo.push(2);
@@ -71,10 +71,10 @@ export const Pag1RegNeg = () => {
     !e.j && daysNo.push(4);
     !e.v && daysNo.push(5);
     !e.s && daysNo.push(6);
-    sessionStorage.setItem("daysno", JSON.stringify(daysNo));
-    sessionStorage.setItem("hInicio", e.hInicio);
-    sessionStorage.setItem("hFinal", e.hFinal);
-    navigate("/auth/pag2");
+    sessionStorage.setItem('daysno', JSON.stringify(daysNo));
+    sessionStorage.setItem('hInicio', e.hInicio);
+    sessionStorage.setItem('hFinal', e.hFinal);
+    navigate('/auth/pag2');
   };
 
   return (
@@ -82,8 +82,8 @@ export const Pag1RegNeg = () => {
       <Center w="100%">
         <VStack>
           <PageHeader
-            pageName={"Datos Básicos"}
-            pageTitle={"Registro de un Nuevo Negocio"}
+            pageName={'Datos Básicos'}
+            pageTitle={'Registro de un Nuevo Negocio'}
           />
           <form onSubmit={handleSubmit(onSubmit)}>
             <Grid templateColumns="repeat(2, 1fr)" gap={6} mt={3}>
@@ -93,11 +93,15 @@ export const Pag1RegNeg = () => {
                   bg="orange.300"
                   borderColor="tomato"
                   color="blue"
-                  {...register("tipo", { required: "Campo Obligatorio" })}
+                  {...register('tipo', { required: 'Campo Obligatorio' })}
                 >
                   <option value="restaurante">Restaurante</option>
                   <option value="cafeteria">Cafetería</option>
                   <option value="peluqueria">Peluqurería</option>
+                  <option value="fruver">Fruver</option>
+                  <option value="market">Market</option>
+                  <option value="supermercado">Supermercado</option>
+                  <option value="papeleria">Papelería</option>
                 </Select>
                 <FormErrorMessage>
                   {errors.tipo && errors.tipo.message}
@@ -109,8 +113,8 @@ export const Pag1RegNeg = () => {
                   type="text"
                   borderColor="gray.400"
                   placeholder="Nombre del Negocio"
-                  {...register("name", {
-                    required: "Campo Obligatorio",
+                  {...register('name', {
+                    required: 'Campo Obligatorio',
                   })}
                 />
                 <FormErrorMessage>
@@ -123,9 +127,9 @@ export const Pag1RegNeg = () => {
                   type="text"
                   borderColor="gray.400"
                   placeholder="Emblema del Negocio"
-                  {...register("emblem", {
-                    required: "Campo Obligatorio",
-                    maxLength: { value: 30, message: "Máximo 30 Caracteres" },
+                  {...register('emblem', {
+                    required: 'Campo Obligatorio',
+                    maxLength: { value: 30, message: 'Máximo 30 Caracteres' },
                   })}
                 />
                 <FormHelperText>
@@ -141,9 +145,9 @@ export const Pag1RegNeg = () => {
                   type="text"
                   borderColor="gray.400"
                   placeholder="Especialidad"
-                  {...register("specialty", {
-                    required: "Campo Obligatorio",
-                    maxLength: { value: 30, message: "Máximo 30 caracteres" },
+                  {...register('specialty', {
+                    required: 'Campo Obligatorio',
+                    maxLength: { value: 30, message: 'Máximo 30 caracteres' },
                   })}
                 />
                 <FormHelperText>Ej: Asados y Parrilla</FormHelperText>
@@ -162,9 +166,9 @@ export const Pag1RegNeg = () => {
                     type="text"
                     borderColor="gray.400"
                     placeholder="Clasificación de los Productos"
-                    {...register("categories", {
+                    {...register('categories', {
                       required: true,
-                      message: " Campo Obligatorio",
+                      message: ' Campo Obligatorio',
                     })}
                   />
                 </Tooltip>
@@ -179,34 +183,34 @@ export const Pag1RegNeg = () => {
               <VStack>
                 <Text>Días de Atención</Text>
                 <Box
-                  display={"flex"}
+                  display={'flex'}
                   w={330}
                   h={12}
                   borderWidth="2px"
                   borderRadius="lg"
-                  borderStyle={"groove"}
+                  borderStyle={'groove'}
                   overflow="hidden"
-                  justifyContent={"space-evenly"}
+                  justifyContent={'space-evenly'}
                 >
-                  <Checkbox defaultChecked size={"sm"} {...register("l")}>
+                  <Checkbox defaultChecked size={'sm'} {...register('l')}>
                     L
                   </Checkbox>
-                  <Checkbox defaultChecked size={"sm"} {...register("m")}>
+                  <Checkbox defaultChecked size={'sm'} {...register('m')}>
                     M
                   </Checkbox>
-                  <Checkbox defaultChecked size={"sm"} {...register("mc")}>
+                  <Checkbox defaultChecked size={'sm'} {...register('mc')}>
                     Mc
                   </Checkbox>
-                  <Checkbox defaultChecked size={"sm"} {...register("j")}>
+                  <Checkbox defaultChecked size={'sm'} {...register('j')}>
                     j
                   </Checkbox>
-                  <Checkbox defaultChecked size={"sm"} {...register("v")}>
+                  <Checkbox defaultChecked size={'sm'} {...register('v')}>
                     V
                   </Checkbox>
-                  <Checkbox defaultChecked size={"sm"} {...register("s")}>
+                  <Checkbox defaultChecked size={'sm'} {...register('s')}>
                     S
                   </Checkbox>
-                  <Checkbox defaultChecked size={"sm"} {...register("d")}>
+                  <Checkbox defaultChecked size={'sm'} {...register('d')}>
                     D
                   </Checkbox>
                 </Box>
@@ -220,8 +224,8 @@ export const Pag1RegNeg = () => {
                       w={40}
                       h={12}
                       borderColor="gray.400"
-                      {...register("hInicio", {
-                        required: "Campo Obligatorio",
+                      {...register('hInicio', {
+                        required: 'Campo Obligatorio',
                       })}
                     />
                     <FormErrorMessage>
@@ -234,8 +238,8 @@ export const Pag1RegNeg = () => {
                       w={40}
                       h={12}
                       borderColor="gray.400"
-                      {...register("hFinal", {
-                        required: "Campo Obligatorio",
+                      {...register('hFinal', {
+                        required: 'Campo Obligatorio',
                       })}
                     />
                     <FormErrorMessage>

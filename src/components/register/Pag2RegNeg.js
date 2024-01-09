@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Input,
   Grid,
@@ -11,16 +11,16 @@ import {
   InputGroup,
   InputLeftAddon,
   Select,
-} from "@chakra-ui/react";
-import Gmap from "../GoogleMap/Gmap";
-import { geolocation } from "../helpers/geolocation";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { CgPlayTrackNextR } from "react-icons/cg";
-import { PageHeader } from "../header/PageHeader";
-import { BiMapPin } from "react-icons/bi";
-import { useQueryClient } from "react-query";
-import { useShop } from "../hooks/commerceHooks";
+} from '@chakra-ui/react';
+import Gmap from '../GoogleMap/Gmap';
+import { geolocation } from '../helpers/geolocation';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { CgPlayTrackNextR } from 'react-icons/cg';
+import { PageHeader } from '../header/PageHeader';
+import { BiMapPin } from 'react-icons/bi';
+import { useQueryClient } from 'react-query';
+import { useShop } from '../hooks/commerceHooks';
 
 export const Pag2RegNeg = () => {
   const navigate = useNavigate();
@@ -36,46 +36,48 @@ export const Pag2RegNeg = () => {
   const [showBtn, setShowBtn] = useState(true);
 
   const queryClient = useQueryClient();
-  const shopinf = queryClient.getQueryData(["login"]) || null;
+  const shopinf = queryClient.getQueryData(['login']) || null;
   const { data, isSuccess } = useShop(shopinf?.id);
+  console.log(data);
   const dataAddrr = data?.result?.addrritems;
   if (isSuccess) {
     if (data.ok) {
       if (!!dataAddrr) {
-        setValue("principal", dataAddrr?.principal);
-        setValue("cruceA", dataAddrr?.cruceA);
-        setValue("cruceB", dataAddrr?.cruceB);
-        setValue("puerta", dataAddrr?.puerta);
-        setValue("detalles", dataAddrr?.detalles);
+        setValue('principal', dataAddrr?.principal);
+        setValue('cruceA', dataAddrr?.cruceA);
+        setValue('cruceB', dataAddrr?.cruceB);
+        setValue('puerta', dataAddrr?.puerta);
+        setValue('detalles', dataAddrr?.detalles);
       }
     }
   }
 
-  const onSubmit = async (e) => {
+  const onSubmit = async e => {
     const direccion = e.detalles
       ? `${e.principal} ${e.cruceA} ${e.cruceB} ${e.puerta} ${e.detalles}`
       : `${e.principal} ${e.cruceA} ${e.cruceB} ${e.puerta}`;
 
-    const placeName = direccion + " Bogota, co";
+    const placeName = direccion + ' Bogota, co';
 
-    sessionStorage.setItem("address", direccion);
+    sessionStorage.setItem('address', direccion);
     sessionStorage.setItem(
-      "cross",
+      'cross',
       `${e.principal} ${e.cruceA} con ${e.cruceB}`
     );
-    sessionStorage.setItem("principal", e.principal);
-    sessionStorage.setItem("cruceA", e.cruceA);
-    sessionStorage.setItem("cruceB", e.cruceB);
-    sessionStorage.setItem("puerta", e.puerta);
-    sessionStorage.setItem("detalles", e.detalles);
+    sessionStorage.setItem('principal', e.principal);
+    sessionStorage.setItem('cruceA', e.cruceA);
+    sessionStorage.setItem('cruceB', e.cruceB);
+    sessionStorage.setItem('puerta', e.puerta);
+    sessionStorage.setItem('detalles', e.detalles);
 
-    const position = await geolocation(placeName).then((position) => {
+    await geolocation(placeName).then(position => {
       setcenter({
         long: position.long ? Number(position.long) : 0,
         lat: position.lat ? Number(position.lat) : 0,
       });
-      sessionStorage.setItem("long", Number(position.long));
-      sessionStorage.setItem("lat", Number(position.lat));
+
+      sessionStorage.setItem('long', Number(position.long));
+      sessionStorage.setItem('lat', Number(position.lat));
     });
 
     setshowMap(true);
@@ -83,7 +85,7 @@ export const Pag2RegNeg = () => {
   };
 
   const handleNext = () => {
-    navigate("/auth/pag3");
+    navigate('/auth/pag3');
   };
 
   return (
@@ -91,13 +93,13 @@ export const Pag2RegNeg = () => {
       <Center w="100%">
         <VStack>
           <PageHeader
-            pageName={"Ubicación"}
-            pageTitle={"Registrar Nuevo Negocio"}
+            pageName={'Ubicación'}
+            pageTitle={'Registrar Nuevo Negocio'}
           />
           <form onSubmit={handleSubmit(onSubmit)}>
             <VStack mt={8} spacing={6}>
               <Grid templateColumns="repeat(2, 1fr)" gap={6} mt={3}>
-                <Select {...register("principal")}>
+                <Select {...register('principal')}>
                   <option value="calle">Calle</option>
                   <option value="carrera">Carrera</option>
                   <option value="avenida">Avenida</option>
@@ -109,9 +111,9 @@ export const Pag2RegNeg = () => {
                   <Input
                     type="text"
                     borderColor="gray.300"
-                    {...register("cruceA", {
-                      required: "# Cra o Calle requerido",
-                      maxLength: { value: 15, message: "máximo 15 caracteres" },
+                    {...register('cruceA', {
+                      required: '# Cra o Calle requerido',
+                      maxLength: { value: 15, message: 'máximo 15 caracteres' },
                     })}
                   />
                   <FormErrorMessage>
@@ -127,11 +129,11 @@ export const Pag2RegNeg = () => {
                     <Input
                       borderColor="gray.300"
                       type="text"
-                      {...register("cruceB", {
-                        required: "# Cra o Calle requerido",
+                      {...register('cruceB', {
+                        required: '# Cra o Calle requerido',
                         maxLength: {
                           value: 15,
-                          message: "máximo 15 caracteres",
+                          message: 'máximo 15 caracteres',
                         },
                       })}
                     />
@@ -145,9 +147,9 @@ export const Pag2RegNeg = () => {
                   <Input
                     borderColor="gray.300"
                     type="text"
-                    {...register("puerta", {
-                      required: "# puerta requerido",
-                      maxLength: { value: 15, message: "máximo 15 caracteres" },
+                    {...register('puerta', {
+                      required: '# puerta requerido',
+                      maxLength: { value: 15, message: 'máximo 15 caracteres' },
                     })}
                   />
                   <FormErrorMessage>
@@ -159,7 +161,7 @@ export const Pag2RegNeg = () => {
                 borderColor="gray.300"
                 type="text"
                 placeholder="Torre ? Apto ???"
-                {...register("detalles")}
+                {...register('detalles')}
               />
             </VStack>
 

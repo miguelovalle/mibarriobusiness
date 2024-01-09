@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Alert,
   Box,
@@ -8,7 +8,6 @@ import {
   Spinner,
   Text,
   SimpleGrid,
-  Container,
   NumberInput,
   NumberInputField,
   NumberInputStepper,
@@ -16,7 +15,6 @@ import {
   NumberDecrementStepper,
   HStack,
   Spacer,
-  Divider,
   Stack,
   VStack,
   StackDivider,
@@ -128,7 +126,7 @@ export const OrderList = ({ id }) => {
                 size={'sm'}
                 defaultValue={today.getDate()}
                 min={1}
-                max={today.getDate()}
+                max={31}
               >
                 <NumberInputField {...register('dia')} />
                 <NumberInputStepper>

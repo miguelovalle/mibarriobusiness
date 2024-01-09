@@ -30,7 +30,6 @@ export const Pag5RegNeg = () => {
   const [showBtn, setShowBtn] = useState('none');
 
   const commerce = comercioObj();
-
   const queryClient = useQueryClient();
   const shopinf = queryClient.getQueryData(['login']) || null;
   const resultUpdate = useMutateUpdateShop(shopinf?.id);
@@ -51,12 +50,23 @@ export const Pag5RegNeg = () => {
           });
         },
         onSuccess: () => {
-          return toast({
-            title: 'Su negocio ha sido agregado a nuestra Base de Datos',
-            status: 'success',
-            duration: 6000,
-            isClosable: true,
-          });
+          if (resultAdd.ok === true) {
+            return toast({
+              title: 'Su negocio ha sido agregado a nuestra Base de Datos',
+              status: 'success',
+              duration: 6000,
+              isClosable: true,
+            });
+          }
+          if (resultAdd.ok === false) {
+            console.log('tenemos un error', resultAdd.error);
+            toast({
+              title: `el error es:${resultAdd.error}`,
+              status: 'warning',
+              duration: 6000,
+              isClosable: true,
+            });
+          }
         },
       });
     }
